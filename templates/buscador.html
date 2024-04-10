@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Buscador{% endblock %}
+{% block content %}
+<section class="contenedor">
+    <h1>Busca una ciudad</h1>
+    <form action="/lista" method="post">
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+
+        <button type="submit" value="Enviar">Enviar</button>
+    </form>
+ </section>
+{% endblock %}

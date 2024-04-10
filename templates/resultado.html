@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Resultados de búsqueda{% endblock %}
+{% block content %}
+<section class="contenedor">
+    <h2>Ediciones de Eurovision celebradas en {{ciudad}}</h2>
+    {% if lista %}
+    <table>
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Recinto</th>
+                <th>Nº de participantes</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for elemento in lista %}
+            <tr>
+                <td>{{elemento.year}}</td>
+                <td>{{elemento.recinto}}</td>
+                <td>{{elemento.participantes}}</td>
+            </tr>
+                {% endfor -%}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay datos para {{ciudad}} </p>
+    {% endif %}
+</section>
+{% endblock %}
