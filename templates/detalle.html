@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Eurovision {{year}}{% endblock %}
+{% block content %}
+<section class="contenedor">
+    <h1>Detalles de Eurovsion {{year}}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="detalles"><h2>Año:</h2></th>
+                    <th class="detalles"><h2>Ciudad:</h2></th>
+                    <th class="detalles"><h2>Recinto:</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="detalles">{{elemento.year}}</td>
+                    <td class="detalles">{{elemento.ciudad}}</td>
+                    <td class="detalles">{{elemento.recinto}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>En Eurovision {{year}} participaron {{elemento.participantes}} concursantes.</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Participante</th>
+                        <th>Canción</th>
+                        <th>País</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for concursante in elemento.lista %}
+                    <tr>
+                        <td>{{concursante.nombre}}</td>
+                        <td>{{concursante.cancion}}</td>
+                        <td>{{concursante.pais}}</td>
+                    </tr>
+                        {% endfor -%}
+                </tbody>
+            </table>
+        <a href="/buscador"><button type="submit">Volver al buscador</button></a>
+
+{% endblock%}
