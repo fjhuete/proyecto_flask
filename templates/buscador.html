@@ -3,9 +3,22 @@
 {% block content %}
 <section class="contenedor">
     <h1>Busca una ciudad</h1>
-    <form action="/lista" method="post">
+    <form action="/buscador" method="post">
         <label for="ciudad">Ciudad:</label>
-        <input type="text" id="ciudad" name="ciudad" required>
+        <input type="text" id="ciudad" name="ciudad" value="{{ciudad}}">
+
+        <label for="year">Año:</label>
+        <select id="year" name="year">
+        {% for year in years %} 
+            {% if seleccionado == year%}
+                <option selected.value="{{year}}">{{year}}</option>
+            {% else %}
+                <option value="1">1</option>
+                <option value="2">3</option>
+                <option value="3">2</option>
+            {% endif %}
+        {% endfor %}
+        </select>
 
         <button type="submit" value="Enviar">Enviar</button>
     </form>

@@ -2,11 +2,12 @@
 {% block title %}Resultados de búsqueda{% endblock %}
 {% block content %}
 <section class="contenedor">
-    <h2>Ediciones de Eurovision celebradas en {{ciudad}}</h2>
+    <h2>Ediciones de Eurovision que coinciden con el término de búsqueda: "{{ciudad}}"</h2>
     {% if lista %}
     <table>
         <thead>
             <tr>
+                <th>Ciudad</th>
                 <th>Año</th>
                 <th>Recinto</th>
                 <th>Nº de participantes</th>
@@ -15,7 +16,8 @@
         <tbody>
                 {% for elemento in lista %}
             <tr>
-                <td>{{elemento.year}}</td>
+                <td>{{elemento.ciudad}}</td>
+                <td><a href="/detalle?year={{elemento.year}}">{{elemento.year}}</a></td>
                 <td>{{elemento.recinto}}</td>
                 <td>{{elemento.participantes}}</td>
             </tr>
