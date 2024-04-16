@@ -9,18 +9,17 @@
 
         <label for="year">Año:</label>
         <select id="year" name="year">
+            <option value="0">Todos</option>
         {% for year in years %} 
             {% if seleccionado == year%}
                 <option selected.value="{{year}}">{{year}}</option>
             {% else %}
-                <option value="1">1</option>
-                <option value="2">3</option>
-                <option value="3">2</option>
+                <option value="{{year}}">{{year}}</option>
             {% endif %}
         {% endfor %}
         </select>
 
-        <button type="submit" value="Enviar">Enviar</button>
+        <button type="submit" value="Enviar">Buscar</button>
     </form>
  </section>
 {% endblock %}

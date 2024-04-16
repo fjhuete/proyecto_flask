@@ -124,11 +124,13 @@ a:hover {
 /* Formulario */
 form {
     margin-bottom: 40px;
+    font-family: 'Rubik';
 }
 
 label {
     display: block;
     margin-bottom: 5px;
+
 }
 
 select {
@@ -154,13 +156,16 @@ input[type="email"] {
     box-sizing: border-box;
     margin-top: 2%;
     margin-bottom: 10%;
+    font-family: 'Rubik';
+
 }
 
 button[type="submit"] {
     background-color: #e839ff;
     color: #f8db8d;
     margin-top: 3%;
-    margin-left: 35%;
+    margin-left: 0%;
+    margin-bottom: 20%;
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
@@ -174,6 +179,8 @@ button[type="submit"]:hover{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'Rubik';
+
 }
 
 /* Tabla */

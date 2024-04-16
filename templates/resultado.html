@@ -2,7 +2,11 @@
 {% block title %}Resultados de búsqueda{% endblock %}
 {% block content %}
 <section class="contenedor">
-    <h2>Ediciones de Eurovision que coinciden con el término de búsqueda: "{{ciudad}}"</h2>
+    {% if seleccionado == 0 %}
+    <h2>Ediciones de Eurovision que coinciden con el término de búsqueda: "{{ciudad}}" en todos los años</h2>
+    {% else %}
+    <h2>Ediciones de Eurovision que coinciden con el término de búsqueda: "{{ciudad}}" en el año {{seleccionado}}</h2>
+    {% endif %}
     {% if lista %}
     <table>
         <thead>
@@ -25,7 +29,11 @@
         </tbody>
     </table>
     {% else %}
-    <p>No hay datos para {{ciudad}} </p>
+        {% if seleccionado == 0 %}
+        <p>No hay datos para el término de búsqueda "{{ciudad}}" en el año {{seleccionado}}.</p>
+        {% else %}
+        <p>No hay datos para el término de búsqueda "{{ciudad}}" en todos los años.</p>
+        {% endif %}
     {% endif %}
 </section>
 {% endblock %}

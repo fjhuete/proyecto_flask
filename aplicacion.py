@@ -13,23 +13,34 @@ def inicio():
 
 @app.route('/buscador', methods=["GET","POST"])
 def buscador():
-    years=[1,2,3,4]
-    #for i in datos:
-     #   years.append(i["year"])
+    years=[]
+    for i in datos:
+       years.append(i["year"])
     if request.method == "GET":
-        return render_template("buscador.html")
+        return render_template("buscador.html", years=years)
     elif request.method == "POST":
         ciudad = request.form.get("ciudad")
-        year = request.form.get("year")
+        year = int(request.form.get("year"))
         lista = []
-        for i in datos:
-            if (i["city"])[:len(ciudad)] == ciudad:
-                elemento = {}
-                elemento["ciudad"] = i["city"]
-                elemento["year"] = i["year"]
-                elemento["recinto"] = i["arena"]
-                elemento["participantes"] = len(i["contestants"])
-                lista.append(elemento)
+        if year == 0:
+            for i in datos:
+                if (i["city"])[:len(ciudad)] == ciudad:
+                    elemento = {}
+                    elemento["ciudad"] = i["city"]
+                    elemento["year"] = i["year"]
+                    elemento["recinto"] = i["arena"]
+                    elemento["participantes"] = len(i["contestants"])
+                    lista.append(elemento)
+        else:
+            for i in datos:
+                if (i["city"])[:len(ciudad)] == ciudad and i["year"] == year:
+                    elemento = {}
+                    elemento["ciudad"] = i["city"]
+                    elemento["year"] = i["year"]
+                    elemento["recinto"] = i["arena"]
+                    elemento["participantes"] = len(i["contestants"])
+                    lista.append(elemento)
+                
         return render_template("resultado.html",ciudad=ciudad, lista=lista, years=years, seleccionado=int(year))
 
 @app.route('/lista', methods=["POST"])
