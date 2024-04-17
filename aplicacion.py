@@ -1,6 +1,9 @@
 from flask import Flask, render_template, abort, redirect, request
 import json
+import os
+
 app = Flask(__name__)
+port = os.environ("PORT")
 
 with open("static/data/eurovision.json") as f:
     datos=json.load(f)
@@ -79,5 +82,5 @@ def detalles():
     return abort(404)
     
 
-app.run("0.0.0.0",5000,debug=True)
+app.run("0.0.0.0",port,debug=True)
 
