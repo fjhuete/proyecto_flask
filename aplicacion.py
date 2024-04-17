@@ -3,7 +3,7 @@ import json
 import os
 
 app = Flask(__name__)
-port = os.environ("PORT")
+port = os.getenv("PORT")
 
 with open("static/data/eurovision.json") as f:
     datos=json.load(f)
