@@ -70,15 +70,59 @@ def detalles():
             elemento["year"] = i["year"]
             elemento["recinto"] = i["arena"]
             elemento["participantes"] = len(i["contestants"])
+            if i.get("logoUrl"):
+                elemento["img"] = i["logoUrl"]
             participantes = []
             for participante in i["contestants"]:
                 concursante = {}
                 concursante["nombre"] = participante["artist"]
                 concursante["cancion"] = participante["song"]
                 concursante["pais"] = paises[(participante["country"])]
+                if i.get("logoUrl"):
+                    concursante["video"] = participante["videoUrls"][0]
                 participantes.append(concursante)
             elemento["lista"] = participantes
             return render_template("detalle.html",year=year, elemento=elemento)
+    return abort(404)
+
+@app.route('/concursante')
+def concursante():
+    year=int(request.args.get("year"))
+    nombre=request.args.get("nombre")
+    for i in datos:
+        if i["year"] == year:
+            for participante in i["contestants"]:
+                if participante["artist"] == nombre:
+                    concursante = {}
+                    concursante["id"] = participante["id"]
+                    concursante["nombre"] = participante["artist"]
+                    concursante["cancion"] = participante["song"]
+                    concursante["pais"] = paises[(participante["country"])]
+                    if participante.get("videoUrls"):
+                        concursante["video"] = participante["videoUrls"][0]
+                    if participante.get("composers"):
+                        concursante["compositores"] = participante["composers"]
+                    if participante.get("lyricists"):
+                        concursante["letristas"] = participante["lyricists"]
+            tabla={}
+            for ronda in i["rounds"]:
+                for j in ronda["performances"]:
+                    if j["contestantId"] == concursante["id"]:
+                        puntos = j["scores"]
+                        for votos in puntos:
+                            if votos["name"] == "total":
+                                resultado={}
+                                for elemento in votos["votes"].items():
+                                    pais = paises[elemento[0]]
+                                    resultado[pais] = elemento[1]
+                                votacion = []    
+                                votacion.append(resultado)
+                                total=votos["points"]
+                                listaronda=[]
+                                listaronda.append(votacion)
+                                listaronda.append(total)
+                        tabla[ronda["name"]]=listaronda
+        return render_template("concursante.html",year=year, concursante=concursante, nombre=nombre, tabla=tabla)
     return abort(404)
     
 

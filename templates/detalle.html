@@ -9,6 +9,9 @@
                     <th class="detalles"><h2>Año:</h2></th>
                     <th class="detalles"><h2>Ciudad:</h2></th>
                     <th class="detalles"><h2>Recinto:</h2></th>
+                {% if elemento.img %}
+                    <th class="detalles"><h2>Logo:</h2></th>
+                {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +19,9 @@
                     <td class="detalles">{{elemento.year}}</td>
                     <td class="detalles">{{elemento.ciudad}}</td>
                     <td class="detalles">{{elemento.recinto}}</td>
+                {% if elemento.img %}
+                    <td class="detalles"><a href="{{elemento.img}}" target="_blank"><img class="img-small" src="{{elemento.img}}"></a></td>
+                {% endif %}
                 </tr>
             </tbody>
         </table>
@@ -32,12 +38,12 @@
                         {% for concursante in elemento.lista %}
                     <tr>
                         <td>{{concursante.nombre}}</td>
-                        <td>{{concursante.cancion}}</td>
+                        <td><a href="{{concursante.video}}" target="_blank">{{concursante.cancion}}</a></td>
                         <td>{{concursante.pais}}</td>
                     </tr>
-                        {% endfor -%}
+                        {% endfor %}
                 </tbody>
             </table>
         <a href="/buscador"><button type="submit">Volver al buscador</button></a>
-
+</section>
 {% endblock%}
