@@ -29,7 +29,7 @@
         </tbody>
     </table>
     {% else %}
-        {% if seleccionado == 0 %}
+        {% if seleccionado != 0 %}
         <p>No hay datos para el término de búsqueda "{{ciudad}}" en el año {{seleccionado}}.</p>
         {% else %}
         <p>No hay datos para el término de búsqueda "{{ciudad}}" en todos los años.</p>

@@ -88,7 +88,9 @@ def detalles():
 @app.route('/concursante')
 def concursante():
     year=int(request.args.get("year"))
-    nombre=request.args.get("nombre")
+    nombre=str(request.args.get("nombre"))
+    #year=2023
+    #nombre='Alessandra'
     for i in datos:
         if i["year"] == year:
             for participante in i["contestants"]:
@@ -115,15 +117,12 @@ def concursante():
                                 for elemento in votos["votes"].items():
                                     pais = paises[elemento[0]]
                                     resultado[pais] = elemento[1]
-                                votacion = []    
-                                votacion.append(resultado)
                                 total=votos["points"]
-                                listaronda=[]
-                                listaronda.append(votacion)
-                                listaronda.append(total)
-                        tabla[ronda["name"]]=listaronda
-        return render_template("concursante.html",year=year, concursante=concursante, nombre=nombre, tabla=tabla)
-    return abort(404)
+                                resultado["Total"]=total
+                        tabla[ronda["name"]]=resultado
+                        
+    return render_template("puntuaciones.html",year=year, nombre=nombre, concursante=concursante, tabla=tabla, resultado=resultado)
+    #return abort(404)
     
 
 app.run("0.0.0.0",port,debug=True)
