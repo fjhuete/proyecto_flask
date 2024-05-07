@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Puntuación de {{nombre}} Eurovision {{year}}{% endblock %}
+{% block content %}
+<section class="contenedor">
+    <h1>{{nombre}} en Eurovsion {{year}}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="detalles"><h2>Nombre:</h2></th>
+                    <th class="detalles"><h2>Canción:</h2></th>
+                    <th class="detalles"><h2>País:</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="detalles">{{concursante.nombre}}</td>
+                    <td class="detalles">{{concursante.cancion}}</td>
+                    <td class="detalles">{{concursante.pais}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <iframe  width="640" height="360" src="{{concursante.video}}" frameborder="0" allowfullscreen></iframe>
+        <table>
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% if tabla.final %}
+                <h2>Final</h2>
+                    {% for i,j in tabla.final.items() %}
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{j}}</td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <h2>Semifinal</h2>
+        {% if tabla.semifinal1 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for i,j in resultado.items() %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{j}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        {% endif %}
+
+        {% if tabla.semifinal2 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for i,j in resultado.items() %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{j}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        {% endif %}
+
+    <a href="/buscador"><button type="submit">Volver al buscador</button></a>
+</section>
+    {% endblock%}

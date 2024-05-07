@@ -89,8 +89,6 @@ def detalles():
 def concursante():
     year=int(request.args.get("year"))
     nombre=str(request.args.get("nombre"))
-    #year=2023
-    #nombre='Alessandra'
     for i in datos:
         if i["year"] == year:
             for participante in i["contestants"]:
@@ -120,7 +118,7 @@ def concursante():
                                 total=votos["points"]
                                 resultado["Total"]=total
                         tabla[ronda["name"]]=resultado
-                        
+
     return render_template("puntuaciones.html",year=year, nombre=nombre, concursante=concursante, tabla=tabla, resultado=resultado)
     #return abort(404)
     

@@ -37,7 +37,7 @@
                 <tbody>
                         {% for concursante in elemento.lista %}
                     <tr>
-                        <td><!--<a href="/concursante?year={{year}}&?nombre={{concursante.nombre}}">-->{{concursante.nombre}}</a></td>
+                        <td><a href="/concursante?year={{year}}&nombre={{concursante.nombre}}">{{concursante.nombre}}</a></td>
                         <td><a href="{{concursante.video}}" target="_blank">{{concursante.cancion}}</a></td>
                         <td>{{concursante.pais}}</td>
                     </tr>
